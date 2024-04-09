@@ -1,37 +1,34 @@
-# Rapidez :package_name_without_prefix
-<!--delete-->
-This repository can be used as template for a new Rapidez package.
+# Rapidez mirasvit-label
 
-- Click on "Use this template" on the top of this Github repo page
-- Run `php ./configure.php`
+This package adds Mirasvit label compatibility to Rapidez.
 
-Credits to [`spatie/package-skeleton-laravel`](https://github.com/spatie/package-skeleton-laravel) for the inpiration for this template.
-
-Keep in mind that if you contribute to this template; it should work for official and unofficial packages!
-- `rapidez/something`
-- `someone/rapidez-something`
-<!--/delete-->
-:package_description
+## Requirements
+For this module to work you need to have the [Mirasvit labels](https://mirasvit.com/magento-2-extensions/product-labels.html) module installed.
 
 ## Installation
 
 ```
-composer require :vendor_slug/:package_slug
-```
-
-## Configuration
-
-You can publish the config with:
-```
-php artisan vendor:publish --tag=rapidez-:package_slug_without_prefix-config
+composer require rapidez/mirasvit-label
 ```
 
 ## Views
 
 You can publish the views with:
 ```
-php artisan vendor:publish --tag=rapidez-:package_slug_without_prefix-views
+php artisan vendor:publish --tag=mirasvitlabel-views
 ```
+
+### Product page
+Add `@include('mirasvitlabel::product.label')` where you'd like to display the labels, most likely somewhere around the images: `resources/views/vendor/rapidez/product/overview.blade.php`.
+
+### Category page
+Add `@include('mirasvitlabel::category.label')` in: `resources/views/vendor/rapidez/category/partials/listing/item.blade.php`.
+
+## Notes
+Not all features of Mirasvit product labels are integrated yet. Missing features are:
+* Label directions
+* Images
+* Product variables
 
 ## License
 
