@@ -36,7 +36,7 @@ class MirasvitLabelServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__.'/../resources/views' => resource_path('views/vendor/mirasvitlabel'),
-        ], 'views');
+        ], 'mirasvitlabel-views');
 
         return $this;
     }
