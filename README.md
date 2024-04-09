@@ -24,6 +24,12 @@ Add `@include('mirasvitlabel::product.label')` where you'd like to display the l
 ### Category page
 Add `@include('mirasvitlabel::category.label')` in: `resources/views/vendor/rapidez/category/partials/listing/item.blade.php`.
 
+## Notes
+Not all features of Mirasvit product labels are integrated yet. Missing features are:
+* Label directions
+* Images
+* Product variables
+
 ## License
 
 GNU General Public License v3. Please see [License File](LICENSE) for more information.
