@@ -19,7 +19,10 @@ class WithMirasvitLabelsScope implements Scope
                 "cat_position", cat_position.code,
                 "cat_style", cat.style
         )), "$.null__") as mirasvit_label')
-            ->leftJoin('mst_productlabel_index as label_index', 'label_index.product_id', '=', $model->getTable() .'.entity_id')
+            ->leftJoin('mst_productlabel_index as label_index', function($join) use ($model) {
+                $join->on('label_index.product_id', '=', $model->getTable() .'.entity_id')
+                    ->where('label_index.store_id', config('rapidez.store'));
+            })
             ->leftJoin('mst_productlabel_label_display as prod', function($join) {
                 $join->on('prod.label_id', '=', 'label_index.label_id')
                     ->whereIn('prod.type', ['view', 'both']);
