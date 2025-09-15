@@ -1,6 +1,12 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/mirasvit-label/compare/1.0.0...master)
+[Unreleased changes](https://github.com/rapidez/mirasvit-label/compare/4.0.0...master)
+## [4.0.0](https://github.com/rapidez/mirasvit-label/releases/tag/4.0.0) - 2025-09-15
+
+### Added
+
+- Rapidez v4 support (#4)
+
 ## [1.0.0](https://github.com/rapidez/mirasvit-label/releases/tag/1.0.0) - 2024-10-31
 
 ### Added
