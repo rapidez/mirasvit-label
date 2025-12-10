@@ -1,6 +1,14 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/mirasvit-label/compare/4.0.0...master)
+[Unreleased changes](https://github.com/rapidez/mirasvit-label/compare/5.0.0...master)
+## [5.0.0](https://github.com/rapidez/mirasvit-label/releases/tag/5.0.0) - 2025-12-10
+
+In this release the templates changed, you should review all changes! And you should add `mirasvit_labels` to the  `result_attributes` in `config/rapidez/searchkit.php`
+
+### Added
+
+- Rapidez v5 support (#5)
+
 ## [4.0.0](https://github.com/rapidez/mirasvit-label/releases/tag/4.0.0) - 2025-09-15
 
 ### Added
