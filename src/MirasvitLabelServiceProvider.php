@@ -3,9 +3,11 @@
 namespace Rapidez\MirasvitLabel;
 
 use Illuminate\Support\ServiceProvider;
-use Rapidez\MirasvitLabel\Models\Casts\CastMirasvitLabelVariables;
-use Rapidez\MirasvitLabel\Models\Scopes\WithMirasvitLabelsScope;
-use TorMorten\Eventy\Facades\Eventy;
+use Rapidez\Core\Models\Product;
+use Rapidez\MirasvitLabel\Models\MirasvitProductLabelIndex;
+use Rapidez\MirasvitLabel\Models\Scopes\WithMirasvitListLabels;
+use Rapidez\MirasvitLabel\Models\Scopes\WithMirasvitViewLabels;
+ use TorMorten\Eventy\Facades\Eventy;
 
 class MirasvitLabelServiceProvider extends ServiceProvider
 {
@@ -17,11 +19,23 @@ class MirasvitLabelServiceProvider extends ServiceProvider
 
     protected function bootEventyFilters(): static
     {
-        Eventy::addFilter('product.scopes', fn ($scopes) => array_merge($scopes ?: [], [WithMirasvitLabelsScope::class]));
-        Eventy::addFilter('product.casts', fn ($casts) => array_merge($casts ?: [], ['mirasvit_label' => CastMirasvitLabelVariables::class]));
+        Eventy::addFilter('productpage.scopes', fn ($scopes) => array_merge($scopes ?: [], [WithMirasvitViewLabels::class]));
+        Eventy::addFilter('index.product.scopes', fn ($scopes) => array_merge($scopes ?: [], [WithMirasvitListLabels::class]));
+        Eventy::addFilter('index.product.data', function ($data, $product) {
+            /** @var Product $product */
+            $data['mirasvit_labels'] = $product->mirasvit_labels?->map?->listLabel;
+
+            return $data;
+        }, arguments: 2);
+
+        Product::resolveRelationUsing('mirasvit_labels', function ($product) {
+            /** @var Product $product */
+            return $product->hasMany(MirasvitProductLabelIndex::class, 'product_id', 'entity_id');
+        });
+
         Eventy::addFilter('index.product.mapping', fn ($mapping) => array_merge_recursive($mapping ?: [], [
             'properties' => [
-                'mirasvit_label' => [
+                'mirasvit_labels' => [
                     'type' => 'flattened',
                 ],
             ],
